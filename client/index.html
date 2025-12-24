@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="client/style.css">
+</head>
+<body>
+    <div class="overlay center row" style="display: flex;">
+        <div class="half column container">
+            <h2>sign up</h2>
+            <input type="text" placeholder="email">
+            <input type="text" placeholder="passworld">
+            <button onclick="signup()">submit</button>
+        </div>
+        <div class="half column container">
+            <h2>log in</h2>
+            <input type="text" placeholder="email">
+            <input type="text" placeholder="passworld">
+            <button onclick="login()">submit</button>
+        </div>
+    </div>
+    <script>
+        const url = new URL(window.location.href);
+        const host = url.hostname;
+        sessionStorage.setItem('navi_server_ip', `${host}:3011`);
+        const ip = sessionStorage.getItem('navi_server_ip');
+        async function signup(){
+            try{
+                const res = await fetch(`http://${ip}/signup`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        email: document.querySelectorAll('input')[0].value,
+                        password: document.querySelectorAll('input')[1].value,
+                    })
+                });
+                const result = await res.json();
+                console.log(result);
+                if (res.ok) {
+                    sessionStorage.setItem('navi_jwt_token', result.data);
+                    sessionStorage.setItem('navi_user_id', result.user._id);
+                    window.location.href = 'client/main.html';
+                }else{
+                    alert('error signing up:'+result);
+                }
+            } catch (err){
+                alert('error signing up:'+err.message);
+            }
+        }
+        async function login(){
+            try{
+                const res = await fetch(`http://${ip}/login`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        email: document.querySelectorAll('input')[2].value,
+                        password: document.querySelectorAll('input')[3].value,
+                    })
+                });
+                const result = await res.json();
+                console.log(result);
+                if (res.ok) {
+                    sessionStorage.setItem('navi_jwt_token', result.data);
+                    sessionStorage.setItem('navi_user_id', result.user._id);
+                    window.location.href = 'client/main.html';
+                }else{
+                    alert('error logging in:'+result);
+                }
+            } catch (err){
+                alert('error:'+err.message);
+            }
+        }
+    </script>
+</body>
+</html>

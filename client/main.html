@@ -1,0 +1,177 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="main">
+    
+    <div id="root" class="row full">
+        <div id="nav-mobile" class="column container sub">
+            <div>
+                <button onclick="open_navbar()">=</button>
+            </div>
+            <div class="column container sub" id="nav-mobile-links" style="display: none;">
+                <button onclick="close_navbar()">close</button>
+                <div class="container">
+                    <div class="container accent" onclick="switch_tab('home');close_navbar()">my navi</div>
+                </div>
+                <div class="container">
+                    <div class="container  accent" onclick="switch_tab('notes');close_navbar()">notes</div>
+                </div>
+                <div class="container">
+                    <div class="container  accent" onclick="switch_tab('todo');close_navbar()">todo</div>
+                </div>
+                <div class="container">
+                    <div class="container" onclick="switch_tab('settings');close_navbar()">settings</div>
+                </div>
+            </div>
+        </div>
+        <div id="nav" class="column container sub">
+            <div class="container">
+                <div class="container  accent" onclick="switch_tab('home')">my navi</div>
+            </div>
+            <div class="container">
+                <div class="container  accent" onclick="switch_tab('notes')">notes</div>
+            </div>
+            <div class="container">
+                <div class="container  accent" onclick="switch_tab('todo')">todo</div>
+            </div>
+            <div class="container">
+                <div class="container  accent" onclick="switch_tab('settings')">settings</div>
+            </div>
+        </div>
+        <div id="main" class="column container bordered">
+            <div id="home" class="tab full container center column bordered">
+                <div class="full">
+                    <button onclick="open_overlay(document.getElementById('ai-options'))" style="left: 10px;">options</button>
+                </div>
+                <div class="overlay center column" id="ai-options">
+                    <button onclick="close_overlay()" style="top: 0;right: 0;position: absolute;">x</button>
+                    <div class="row container sub">
+                        <input type="text" placeholder="api key" id="api-key-input">
+                        <button onclick="set_api_key()">submit</button>
+                    </div>
+                </div>
+                <div class="full center column">
+                    <img src="logoblue.png" alt="" width="250px" height="250px">
+                </div>
+                <div class="full container" id="text-box"></div>
+                <div class="half scalable container column center">
+                    <div class="row wrappable container">
+                        <input type="text" placeholder="send a message" id="navi-message-input">
+                        <button class="accent" onclick="send_message()">send</button>
+                        <div class="container row full">
+                            <!--<button onclick="save_conversation()">save this conversation</button> -->
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div id="todo" class="tab column full center">
+                <div id="todo-toolbar" class="container full row wrappable">
+                    <input type="text" placeholder="search">
+                    <button>due today</button>
+                    <button>completed</button>
+                    <button onclick="open_overlay(document.getElementById('todo-editor'))">create new</button>
+                </div>
+                <div id="todo-editor" class="overlay center column">
+                    <button onclick="close_overlay()" style="position: absolute;top: 0;right: 0;">close</button>
+                    <div class="half scalable column container bordered">
+                        <h3>new todo</h3>
+                        <input type="text" placeholder="task name" id="todo-name">
+                        <div class="row container centered full">
+                            <label for="">start date</label>
+                            <input type="datetime-local" name="" id="todo-start">
+                        </div>
+                        <div class="row container centered full">
+                            <label for="">end date</label>
+                            <input type="datetime-local" name="" id="todo-end">
+                        </div>
+                        <button onclick="upload_todo()">submit</button>
+                    </div>
+                </div>
+                <div id="todo-list" class="full container column center">
+                    <div id="todo-item" class="container row full wrappable">
+                        <div class="container half scalable">buy groceries</div>
+                        <div class="container quarter scalable">date</div>
+                        <div class="container quarter scalable">date</div>
+                        <div class="container quarter row scalable">
+                            <button>edit</button>
+                            <button>delete</button>
+                        </div>
+                    </div>
+                    <div id="todo-item" class="container row full wrappable">
+                        <div class="container half scalable">buy groceries</div>
+                        <div class="container quarter scalable">date</div>
+                        <div class="container quarter scalable">date</div>
+                        <div class="container quarter row scalable">
+                            <button>edit</button>
+                            <button>delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="notes" class="tab column full center">
+                <div id="notes-toolbar" class="row wrappable container full">
+                    <input type="text" placeholder="search">
+                    <button onclick="open_overlay(document.getElementById('notes-editor'))">new note</button>
+                </div>
+                <div id="notes-editor" class="overlay column center" style="display: none;">
+                    <button onclick="close_overlay()" style="position: absolute; top: 0;right: 0;">close</button>
+                    <div class= continer column center">
+                        <h3>new note</h3>
+                        <label for="">title</label>
+                        <input type="text" id="note-title">
+                        <label for="">body</label>
+                        <textarea name="" id="note-body"></textarea>
+                        <button onclick="upload_note()">submit</button>
+                    </div>
+                </div>
+                <div id="notes-viewer" class="overlay center">
+                    <button onclick="close_overlay()" style="position: absolute; top: 0;right: 0;">close</button>
+                    <div class="container full">
+                        <div class="container full column center">
+                            <h1 id="note_title"></h1>
+                            <p id="note_body"></p>
+                        </div>
+                    </div>
+                </div>
+                <div id="notes-list" class="container full row wrappable">
+                    <div class="quarter container">
+                        <h3>note 1</h3>
+                        <p>lorem ipsum</p>
+                        <button>open</button>
+                    </div>
+                </div>
+            </div>
+            <div id="settings" class="tab column full center">
+                <div class="half scalable column container bodered">
+                    <h2>theme</h2>
+                    <div class="row">
+                        <button onclick="change_theme('dark')">dark</button>
+                        <button onclick="change_theme('light')">light</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="auth.js"></script>
+    <script src="elems.js"></script>
+    <script src="notes.js"></script>
+    <script src="settings.js"></script>
+    <script src="todo.js"></script>
+    <script src="navi.js"></script>
+    <script>
+        switch_tab('home');
+        fetch_todos()
+        fetch_notes()
+        conversations.push({ role: "system", content: `you are a ai assistant for a productivity app. generate responses with html tags. start with a welcome message` })
+        //talk()
+        chat('<div class="full center column"><h2>welcome to the app</h2></div>',2)
+        change_theme('dark')
+    </script>
+</body>
+</html>
