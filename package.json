@@ -1,6 +1,7 @@
 {
   "name": "navi",
   "version": "1.0.0",
+  "type": "module",
   "main": "server",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,6 +18,7 @@
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.3",
+    "mongodb-memory-server": "^11.0.1",
     "mongoose": "^8.18.0",
     "multer": "^2.0.2",
     "path": "^0.12.7"

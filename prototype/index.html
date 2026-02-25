@@ -40,7 +40,7 @@
                 if (res.ok) {
                     sessionStorage.setItem('navi_jwt_token', result.data);
                     sessionStorage.setItem('navi_user_id', result.user._id);
-                    window.location.href = 'client/main.html';
+                    window.location.href = 'client/prototype.html';
                 }else{
                     alert('error signing up:'+result);
                 }
@@ -63,7 +63,7 @@
                 if (res.ok) {
                     sessionStorage.setItem('navi_jwt_token', result.data);
                     sessionStorage.setItem('navi_user_id', result.user._id);
-                    window.location.href = 'client/main.html';
+                    window.location.href = 'client/prototype.html';
                 }else{
                     alert('error logging in:'+result);
                 }

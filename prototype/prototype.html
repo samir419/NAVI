@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h2>ai assistant</h2>
+	 <div id="ai-options">
+		<button onclick="close_overlay()" style="top: 0;right: 0;position: absolute;">x</button>
+        <input type="text" placeholder="api key" id="api-key-input">
+        <button onclick="set_api_key()">submit</button>
+    </div>
+    <img src="logoblue.png" alt="" width="250px" height="250px">
+    <div id="text-box"></div>
+    <input type="text" placeholder="send a message" id="navi-message-input">
+    <button onclick="send_message()">send</button>
+    <!--<button onclick="save_conversation()">save this conversation</button> -->
+    <h2>todo list</h2>
+    <div>
+        <h3>new todo</h3>
+        <input type="text" placeholder="task name" id="todo-name">
+        <label for="">start date</label>
+        <input type="datetime-local" name="" id="todo-start">
+        <label for="">end date</label>
+        <input type="datetime-local" name="" id="todo-end">
+        <button onclick="upload_todo()">submit</button>
+    </div>
+    <div id="todo-list"></div>
+    <h2>notes</h2>
+     <div>
+        <h3>new note</h3>
+        <label for="">title</label>
+        <input type="text" id="note-title">
+        <label for="">body</label>
+        <textarea name="" id="note-body"></textarea>
+        <button onclick="upload_note()">submit</button>
+    </div>
+    <div id="notes-viewer">
+        <div>
+            <h1 id="note_title"></h1>
+            <p id="note_body"></p>
+        </div>
+    </div>
+    <div id="notes-list"></div>
+    <h2>habit tracker</h2>
+    <button onclick="prev_month()">prev</button>
+    <button onclick="next_month()">next</button>
+    <div>
+        <h3>create new habit</h3>
+        <input type="text" placeholder="habit name" id="habitInput">
+        <button onclick="create_habit()">submit</button>
+    </div>
+    <div id="habits"></div>
+    <div id="habit calendar"></div>
+    <script src="auth.js"></script>
+    <script src="notes.js"></script>
+    <script src="settings.js"></script>
+    <script src="todo.js"></script>
+    <script src="navi.js"></script>
+    <script src="habittracker.js"></script>
+    <script>
+        fetch_todos()
+        fetch_notes()
+        conversations.push({ role: "system", content: `you are a ai assistant for a productivity app. generate responses with html tags. start with a welcome message` })
+        //talk()
+        chat('<div class="full center column"><h2>welcome to the app</h2></div>',2)
+    </script>
+</body>
+</html>

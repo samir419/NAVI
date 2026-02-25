@@ -34,24 +34,14 @@ function render_todos(){
     let todo_list=document.getElementById('todo-list');
     todo_list.innerHTML='';
     for(let i=0;i<todos.length;i++){
-        todo_list.innerHTML+=`<div id="todo-item" class="container row full wrappable">
-                <div class="container scalable">
-                    <div class="container sub"><p>${todos[i].description}</p></div>
-                </div>
-                <div class="container scalable">
-                    <div class="container column sub"><p>${todos[i].start}</p></div>
-                </div>
-                <div class="container scalable">
-                    <div class="container column sub"><p>${todos[i].end}</p></div>
-                </div>
-                <div class="container quarter row scalable">
-                    <button onclick="delete_todo(${i})">delete</button>
-                </div>
+        todo_list.innerHTML+=`
+            <div>
+                <p>${todos[i].description}</p>
+                <p>${todos[i].start}</p>
+                <p>${todos[i].end}</p>
+                <button onclick="delete_todo(${i})">delete</button>
             </div>`;
     }
-    todo_list.innerHTML+=`<div class="container row full wrappable">
-        <button onclick="open_overlay(document.getElementById('todo-editor'))">add todo</button>
-    </div>`;
 }
 async function upload_todo(){
     let description=document.getElementById('todo-name').value;

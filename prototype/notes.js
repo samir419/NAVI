@@ -34,18 +34,16 @@ function render_notes(){
     let notes_container=document.getElementById('notes-list');
     notes_container.innerHTML='';
     for(let i=0;i<notes.length;i++){
-        notes_container.innerHTML+=`<div class="quarter scalable container">
-                <div class="container sub">
+        notes_container.innerHTML+=`
+                <div>
                     <h3>${notes[i].title}</h3>
                     <p>${notes[i].body.substring(0,30)}...</p>
                     <button onclick="open_note(${i})">open</button>
                     <button onclick="delete_note(${i})">delete</button>
-                </div>
-            </div>`;
+                </div>`;
     }
 }
 function open_note(index){
-    open_overlay(document.getElementById('notes-viewer'))
     document.getElementById('note_title').innerHTML+=``
     document.getElementById('note_body').innerHTML+=``
     let current_note = notes[index]
