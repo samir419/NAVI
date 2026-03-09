@@ -8,11 +8,13 @@ import {
   LogOut, 
   LayoutDashboard,
   Menu,
-  X
+  X,
+  Flame
 } from 'lucide-vue-next';
 import TodoView from './TodoView.vue';
 import NoteView from './NoteView.vue';
 import ChatWindow from './ChatWindow.vue';
+import HabitView from './HabitView.vue';
 
 const props = defineProps(['user']);
 const emit = defineEmits(['logout']);
@@ -22,6 +24,7 @@ const isSidebarOpen = ref(true);
 
 const navItems = [
   { id: 'todos', name: 'Tasks', icon: CheckSquare },
+  { id: 'habits', name: 'Habits', icon: Flame },
   { id: 'notes', name: 'Notes', icon: FileText },
   { id: 'chat', name: 'Navi AI', icon: MessageSquare },
 ];
@@ -115,7 +118,7 @@ const toggleSidebar = () => isSidebarOpen.value = !isSidebarOpen.value;
           mode="out-in"
         >
           <component 
-            :is="activeTab === 'todos' ? TodoView : (activeTab === 'notes' ? NoteView : ChatWindow)" 
+            :is="activeTab === 'todos' ? TodoView : (activeTab === 'habits' ? HabitView : (activeTab === 'notes' ? NoteView : ChatWindow))" 
             :key="activeTab"
             :user="user"
           />

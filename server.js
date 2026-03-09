@@ -22,10 +22,12 @@ app.use('/client', express.static(path.join(__dirname, 'prototype')));
 import user from './routes/user.js';
 import todo from './routes/todo.js';
 import note from './routes/notes.js';
+import habit from './routes/habits.js';
 
 app.use(user);
 app.use(todo);
 app.use(note);
+app.use(habit);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'prototype/index.html'));

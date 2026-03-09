@@ -1,5 +1,5 @@
 let habits =  [
-    {name:'gym',complete:true,dates:["2026-02-22","2026-02-24"]}
+    {name:'gym',completed:true,dates:["2026-02-22","2026-02-24"]}
 ];
 //let today = new Date().toDateString();
 let today = new Date()
@@ -13,6 +13,7 @@ function render_habits(date){
         let div = document.createElement("div");
         let title = document.createElement('h3')
         title.textContent=habit.name
+        if(habit.completed==true){title.style.color='red'}
         title.onclick=()=>{
             let today = new Date()
             let todayString = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`
@@ -84,8 +85,10 @@ function toggleHabit(index){
 
     if(!habit.completed){
         habit.completed = true;
-        let d = new Date()
-        habit.dates.push(`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`);
+        let today = new Date()
+        let todayString = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`
+
+        habit.dates.push(todayString);
     } else {
         habit.completed = false;
         habit.dates.pop()

@@ -27,6 +27,14 @@ const noteSchema = new mongoose.Schema({
   created_at: { type: Date, default: Date.now },
 });
 
+const habitSchema = new mongoose.Schema({
+  name: String,
+  owner: { type: Schema.Types.ObjectId, ref: 'User' },
+  dates: [String], // Array of date strings like "YYYY-MM-DD"
+  createdAt: { type: Date, default: Date.now }
+});
+
 export const User = mongoose.model('User', userSchema);
 export const Todo = mongoose.model('Todo', todoSchema);
 export const Note = mongoose.model('Note', noteSchema);
+export const Habit = mongoose.model('Habit', habitSchema);
